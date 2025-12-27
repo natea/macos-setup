@@ -1,11 +1,11 @@
-#!/bin/bash
+#!/bin/zsh
 
 install_homebrew(){
     # Check for Homebrew
     if test ! $(which brew)
     then
       echo "  Installing Homebrew."
-      /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+      /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
     fi
 }
 
@@ -14,24 +14,27 @@ install_homebrew
 
 # install cask
 brew tap homebrew/cask
+brew tap homebrew/cask-drivers
+brew tap homebrew/cask-fonts
 # add versions support in cask
 brew tap homebrew/cask-versions
-
-# install pip
-sudo easy_install pip
-
-# install virtualenv(wrapper)
-sudo pip install virtualenv
-sudo pip install virtualenvwrapper
+# hashicorp official tap
+brew tap hashicorp/tap
+# eksctl tap
+brew tap weaveworks/tap
 
 # brew installs
-brew install zsh
+# brew install zsh
 brew install wget
-brew install curl
+# curl now comes with macos
+# brew install curl
+brew install fd
 # mail alternative
-brew install mutt
+# brew install mutt
 # top alternative
 brew install htop
+# cat replacement
+brew install bat
 # list dir contents as a tree
 brew install tree
 # standard linux command to copy ssh keys to remote
@@ -41,139 +44,184 @@ brew install mackup
 # OS X provides an older sqlite3
 # brew install sqlite
 # dev stuff
-brew install python3
+brew install pyenv
 brew install vim
 brew install git
-brew install postgres
+# brew install postgres
 brew install node
 # brew install redis
 # brew install memcached
 # brew install memcached-top
 # brew install rabbitmq
 # brew install sphinx
-brew install siege
-brew install terraform
+# brew install siege
+# brew install hashicorp/tap/terraform
+# have multiple versions of terraform installed
+brew install tfenv
 # download youtube videos using command line
-brew install youtube-dl
+# brew install youtube-dl
 
 # cask installs
 # browsers
-brew cask install google-chrome
-brew cask install firefox
-brew cask install opera
+brew install --cask google-chrome
+brew install --cask firefox
+brew install --cask opera
+
+# password managers/auth
+brew install --cask 1password
+brew install --cask bitwarden
+brew install --cask authy
+# yubikey
+brew install ykman
+brew install --cask yubico-authenticator
+brew install --cask yubico-yubikey-manager
 
 # cloud storage
-brew cask install dropbox
+brew install --cask dropbox
+
+# window management
+# brew install --cask spectacle
+# spectacle is dead, rectangle is the successor
+brew install --cask rectangle
+# external monitor brightness and volume control
+brew install --cask monitorcontrol
+# key remapper
+brew install --cask karabiner-elements
+# menu bar item control
+brew install --cask bartender
+# calendar
+brew install --cask fantastical
+# notes
+brew install --cask evernote
+# ftp client
+brew install --cask filezilla
+# torrent app
+# brew install --cask qbittorrent
+# system maintance
+# brew install --cask ccleaner
+# brew install --cask omnidisksweeper
+# photo editor
+# brew install --cask gimp
+# markdown editor
+brew install --cask mark-text
+# video chat
+# brew install --cask skype
+brew install --cask zoomus
+# messaging apps aggregator
+# brew install --cask franz
+# gaming
+# brew install --cask steam
+# brew install --cask discord
+# better archive support
+# brew install --cask the-unarchiver
+brew install --cask keka
+brew install --cask kekadefaultapp
+# terminal alternative
+# brew install --cask iterm2
+brew install --cask warp
+# flash player
+# brew install --cask flash-player
+# java vm
+# brew install --cask java  # Cask 'java' is unavailable: No Cask with this name exists.
+# golang
+# brew install go
+# mass renamer
+# brew install --cask a-better-finder-rename
+# text editor
+# brew install --cask sublime-text3
+brew install --cask visual-studio-code
+# postgres gui
+# brew install --cask pgadmin3
+# mongodb gui
+# brew install --cask mongodb-compass
+# sqlite gui
+# brew install --cask sqlitebrowser
+# general database gui
+brew install --cask tableplus
+# logitech software for devices using logitech unifying receiver
+# brew install --cask logitech-unifying
+# git gui
+brew install --cask fork
+# id3 tag editor
+# brew install --cask kid3
+# convert any audio to mp3 using command line
+# brew install --cask all2mp3
+# prevent mac from sleeping
+# brew install --cask nosleep
+# team communication tool
+brew install --cask slack
+# keybase - pgp
+# brew install --cask keybase
+# mount ntfs drivers in macos
+# brew install --cask paragon-ntfs
+# mount android phone as storage
+brew install --cask android-file-transfer
+# vm
+brew install --cask virtualbox
+brew install --cask virtualbox-extension-pack
+# backup
+# brew install --cask backblaze
+# kubernetes
+brew install kubectl
+brew install kubectx
+brew install helm
+brew install k9s
+# docker with docker-compose
+brew install --cask docker
+# run kubernetes locally
+# brew install --cask minikube
+# public tunnel to localhost
+brew install --cask ngrok
+# api client
+brew install --cask insomnia
+
+# GCP SDK
+# brew install --cask google-cloud-sdk
+
+brew install awscli
+brew install --cask aws-vault
+brew install aws-iam-authenticator
+brew install chamber
+brew install weaveworks/tap/eksctl
+# brew install --cask gpg-suite-no-mail
+
+# microsoft office 365
+brew install --cask microsoft-office
+# preview kindle e-books
+# brew install --cask kindle-previewer
 
 # multimedia
-brew cask install vlc
+brew install --cask vlc
 #  subtitles search apps
-brew cask install flixtools
+brew install --cask flixtools
 #  last.fm scrobbler - authentification problems - using scrobomatic from app store
-
-# notes
-brew cask install evernote
-# window management
-brew cask install spectacle
-# key remapper
-brew cask install karabiner-elements
-# menu bar item control
-brew cask install bartender
-# ftp client
-brew cask install filezilla
-# torrent app
-brew cask install qbittorrent
-# system maintance
-# brew cask install ccleaner
-# brew cask install omnidisksweeper
-# photo editor
-brew cask install gimp
-# markdown editor
-brew cask install mark-text
-# video chat
-brew cask install skype
-brew cask install zoomus
-# messaging apps aggregator
-brew cask install franz
-# gaming
-brew cask install steam
-# brew cask install discord
-# better archive support
-brew cask install the-unarchiver
-# terminal alternative
-brew cask install iterm2
-# flash player
-brew cask install flash-player
-# java vm
-brew cask install java
-# mass renamer
-# brew cask install a-better-finder-rename
-# text editor
-# brew cask install sublime-text3
-brew cask install visual-studio-code
-# postgres gui
-# brew cask install pgadmin3
-# mongodb gui
-# brew cask install mongodb-compass
-# sqlite gui
-brew cask install sqlitebrowser
-# logitech software for devices using logitech unifying receiver
-# brew cask install logitech-unifying
-# git gui
-brew cask install fork
-# id3 tag editor
-brew cask install kid3
-# convert any audio to mp3 using command line
-# brew cask install all2mp3
-# prevent mac from sleeping
-# brew cask install nosleep
-# team communication tool
-brew cask install slack
-# keybase - pgp
-brew cask install keybase
-# mount ntfs drivers in macos
-# brew cask install paragon-ntfs
-# mount android phone as storage
-brew cask install android-file-transfer
-# vm
-brew cask install virtualbox
-brew cask install virtualbox-extension-pack
-# backup
-brew cask install backblaze
-# docker with docker-compose
-brew cask install docker
-# public tunnel to localhost
-brew cask install ngrok
-# microsoft office 365
-brew cask install microsoft-office
+# youtube music player
+brew install --cask ytmdesktop-youtube-music
 
 # quick view plugins
 #  syntax highlighting
-brew cask install qlcolorcode
-#  markdown files
-brew cask install qlmarkdown
-#  json files
-brew cask install quicklook-json
-#  archives
-brew cask install betterzipql
-#  image size
-brew cask install qlimagesize
-#  show content of text files that don't have extensions
-brew cask install qlstephen
-#  nfo files
-brew cask install quicknfo
+# brew install --cask qlcolorcode
+# #  markdown files
+# brew install --cask qlmarkdown
+# #  json files
+# brew install --cask quicklook-json
+# #  inspect installer packages
+# brew install --cask suspicious-package
+# #  image size
+# brew install --cask qlimagesize
+# #  show content of text files that don't have extensions
+# brew install --cask qlstephen
+# #  nfo files
+# brew install --cask quicknfo
 
-# install pipsi
-#  https://github.com/mitsuhiko/pipsi
-curl https://raw.githubusercontent.com/mitsuhiko/pipsi/master/get-pipsi.py | python
-#  pipsi installs
-pipsi install --python=python3 awscli
-pipsi install --python=python3 httpie
-pipsi install --python=python3 subliminal
-pipsi install --python=python3 udemy-dl
-pipsi install checkoutmanager
-pipsi install --python=python3 tldr
-pipsi install --python=python3 bandcamp-downloader
+# install pipx (a maintaned pipsi alternative)
+brew install pipx
+#  pipx installs
+pipx install --python=python3 httpie
+pipx install --python=python3 checkoutmanager
+pipx install --python=python3 tldr
+pipx install --python=python3 virtualenv
+pipx install --python=python3 virtualenvwrapper
 
 # set to use zsh as default shell
-chsh -s /usr/local/bin/zsh
+# chsh -s /usr/local/bin/zsh
